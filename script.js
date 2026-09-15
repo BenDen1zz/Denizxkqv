@@ -13,7 +13,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => navLinks.classList.remove('open'));
 });
 
-// Scroll Progress Bar
+// Scroll Progress
 const scrollProgress = document.getElementById('scrollProgress');
 window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
@@ -47,11 +47,27 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// Planet paralaks (scroll ile hafif kayma)
+// Planet paralaks
 window.addEventListener('scroll', () => {
     const scrolled = window.scrollY;
     document.querySelectorAll('.planet').forEach((planet, i) => {
-        const speed = (i + 1) * 0.05;
+        const speed = (i + 1) * 0.04;
         planet.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+});
+
+// FAQ Accordion
+document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+        const item = question.parentElement;
+        const isOpen = item.classList.contains('open');
+        
+        // Diğerlerini kapat
+        document.querySelectorAll('.faq-item').forEach(faq => faq.classList.remove('open'));
+        
+        // Tıklananı aç
+        if (!isOpen) {
+            item.classList.add('open');
+        }
     });
 });
